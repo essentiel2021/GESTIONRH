@@ -18,8 +18,10 @@ class CreateTableServices extends Migration
             $table->string("libelle",150);
             $table->string("sigle",5);
             $table->string("slug",150)->nullable();
+            $table->foreignId("departement_id")->constrained();
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,6 +31,9 @@ class CreateTableServices extends Migration
      */
     public function down()
     {
+        Schema::table("services", function(Blueprint $table){
+            $table->dropForeign("departement_id");
+        });
         Schema::dropIfExists('services');
     }
 }

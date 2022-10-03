@@ -25,9 +25,14 @@ class CreateTableEmployes extends Migration
             $table->string("telephone2",25)->nullable();
             $table->integer('numeroCNPS')->nullable();
             $table->integer('numeroDos')->nullable();
+            $table->string('personContact');
+            $table->string('personContactNum');
             $table->string("quartier");
+            $table->foreignId("fonction_id")->constrained();
+            $table->foreignId("situation_matrimoniale_id")->constrained();
             $table->timestamps();
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -37,6 +42,10 @@ class CreateTableEmployes extends Migration
      */
     public function down()
     {
+        Schema::table("employes", function(Blueprint $table){
+            $table->dropForeign("fonction_id");
+            $table->dropForeign("situation_matrimoniale_id");
+        });
         Schema::dropIfExists('employes');
     }
 }
