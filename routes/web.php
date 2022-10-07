@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuccursaleController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('succursales',SuccursaleController::class);
+Route::get('register',[RegisterController::class,'index'])->name('register');
+Route::post('register',[RegisterController::class,'register'])->name('post.register');
 
-
+Route::get('login',[LoginController::class,'index'])->name('login');
+Route::post('login',[LoginController::class,'login'])->name('post.login');
