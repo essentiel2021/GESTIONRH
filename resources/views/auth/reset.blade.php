@@ -6,8 +6,9 @@
   <div class="card">
     <div class="card-body login-card-body">
     <p class="login-box-msg">{{ $title ?? '' }}</p>
-      <form action="{{ route('post.login') }}" method="post">
+      <form action="{{ route('post.reset') }}" method="post">
         @csrf
+        <input type="hidden" name="token" value="{{ $password_reset->token }}">
         @if(session('success'))
           <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -20,7 +21,7 @@
           <div class="error">{{ $message }}</div>
         @enderror
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email">
+          <input type="text" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -29,28 +30,28 @@
         </div>
 
         @error('password')
-          <div class="error">{{ $message}}</div>
-        @enderror
+            <div class="error">{{ $message }}</div>
+         @enderror
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Mot de passe">
+          <input type="password" class="form-control" name="password" placeholder="Mot de passe">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-        <div class="icheck-primary">
-          <input type="checkbox" id="remember" name="remember" value="1" >
-          <label for="remember">Se souvenir de moi</label>
-        </div>
+        <div class="input-group mb-3">
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmer le Mot de passe">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
         <div class="row">
-            <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+            <button type="submit" class="btn btn-primary btn-block">Envoyer</button>
         </div>
       </form>
-
-      <p class="mb-1 mt-3">
-        <a href="forgot-password.html">Mot de passe Oublié</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

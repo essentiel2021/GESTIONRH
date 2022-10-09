@@ -2,7 +2,7 @@
 
 @section('container')
 
-<div class="register-box">
+<div class="register-box" style="width:700px;">
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">{{ $title ?? '' }}</p>
