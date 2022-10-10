@@ -177,18 +177,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -235,24 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Starter Page</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
+    
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -271,9 +242,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-    <div class="p-3">
-      <h5>Title</h5>
-      <p>Sidebar content</p>
+    <div class="card bg-dark">
+      <div class="card-body bg-dark box-profile">
+        <div class="text-center">
+          <img class="profile-user-img img-fluid img-circle"src="{{ asset('images/user.png') }}"alt="User profile picture">
+        </div>
+
+        <h3 class="profile-username text-center ellipsis">{{  auth()->user()->name }} {{  auth()->user()->lastName }}</h3>
+
+        <p class="text-muted text-center">Software Engineer</p>
+
+        <ul class="list-group list-group-unbordered mb-3">
+          <li class="list-group-item">
+            <b>Followers</b> <a class="float-right">1,322</a>
+          </li>
+          <li class="list-group-item">
+            <b>Following</b> <a class="float-right">543</a>
+          </li>
+          <li class="list-group-item">
+            <b>Friends</b> <a class="float-right">13,287</a>
+          </li>
+        </ul>
+        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+      </div>
     </div>
   </aside>
   <!-- /.control-sidebar -->

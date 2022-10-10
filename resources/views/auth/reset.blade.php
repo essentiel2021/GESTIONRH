@@ -21,7 +21,7 @@
           <div class="error">{{ $message }}</div>
         @enderror
         <div class="input-group mb-3">
-          <input type="text" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email">
+          <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmer le Mot de passe">
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmer le mot de passe">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -57,3 +57,4 @@
   </div>
 </div>
 @endsection
+

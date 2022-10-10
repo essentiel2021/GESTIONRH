@@ -26,7 +26,7 @@ class LoginController extends Controller
         ]);
         $remember = request()->has('remember');
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')], $remember)) {
-            dd(Auth::user());
+            //dd(Auth::user());
             return redirect('/');
         }
         return back()->withError('Mauvais identifients.')->withInput();

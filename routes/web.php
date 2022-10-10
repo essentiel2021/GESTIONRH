@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\ForgotController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuccursaleController;
@@ -19,10 +20,6 @@ use App\Http\Controllers\SuccursaleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::resource('succursales',SuccursaleController::class);
 Route::get('register',[RegisterController::class,'index'])->name('register');
 Route::post('register',[RegisterController::class,'register'])->name('post.register');
@@ -37,3 +34,5 @@ Route::post('forgot',[ForgotController::class,'store'])->name('post.forgot');
 
 Route::get('reset/{token}',[ResetController::class,'index'])->name('reset');
 Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
+
+Route::get('/',[HomeController::class,'index'])->name('home');
