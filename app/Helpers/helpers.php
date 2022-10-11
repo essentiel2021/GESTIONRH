@@ -2,5 +2,5 @@
 
 
 function userFullName(){
-    return auth()->user()->prenom . " " . auth()->user()->nom;
+    return auth()->user()->lastName . " " . auth()->user()->name;
 }
