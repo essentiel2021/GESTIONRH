@@ -14,6 +14,7 @@ class CreateTableUserRole extends Migration
     public function up()
     {
         Schema::create('user_role', function (Blueprint $table) {
+            $table->id();
             $table->foreignId("user_id")->constrained();
             $table->foreignId("role_id")->constrained();
             $table->timestamps();
@@ -32,6 +33,7 @@ class CreateTableUserRole extends Migration
             $table->dropForeign("user_id");
             $table->dropForeign("role_id");
         });
+
         Schema::dropIfExists('user_role');
     }
 }

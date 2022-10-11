@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory;
     use  Notifiable;
+    protected $table = 'user_role';
 
     public function roles()
     {
@@ -19,5 +21,15 @@ class User extends Authenticatable
     
     public function permissions(){
         return $this->belongsToMany(Permission::class, 'user_permission', 'user_id', 'permission_id');
+    }
+
+    public function hasRole($role)
+    {
+        return $this->roles()->where("libellle",$role)->first() ==! null;
+    }
+
+    public function hasAnyRoles($roles)
+    {
+        return $this->roles()->whereIn("libellle",$roles)->first() ==! null;
     }
 }

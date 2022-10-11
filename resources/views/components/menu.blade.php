@@ -29,38 +29,12 @@
               </li>
             </ul>
         </li>
+        
         <li class="nav-item">
             <a href="#" class="nav-link">
               <i class=" nav-icon fas fa-user-shield"></i>
               <p>
                 Gestion Comptes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a
-                href=""
-                class="nav-link"
-                >
-                  <i class=" nav-icon fas fa-users-cog"></i>
-                  <p>Utilisateurs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-fingerprint"></i>
-                  <p>Roles et permissions</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class=" nav-icon fas fa-user-shield"></i>
-              <p>
-                Gestion Employes
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -110,5 +84,30 @@
             </ul>
           </li>
         </li>
+
+        <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class=" nav-icon fas fa-user-shield"></i>
+              <p>
+                Gestion Succursale
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item"><a href="" class="nav-link">
+                  <i class=" nav-icon fas fa-users-cog"></i>
+                  <p>Départements</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-fingerprint"></i>
+                  <p>Services</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </li>
+       
     </ul>
 </nav>
