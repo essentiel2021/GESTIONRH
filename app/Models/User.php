@@ -12,11 +12,10 @@ class User extends Authenticatable
 {
     use HasFactory;
     use  Notifiable;
-    protected $table = 'user_role';
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
     }
     
     public function permissions(){
@@ -25,11 +24,11 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        return $this->roles()->where("libellle",$role)->first() ==! null;
+        return $this->roles()->where("libelle",$role)->first() ==! null;
     }
 
     public function hasAnyRoles($roles)
     {
-        return $this->roles()->whereIn("libellle",$roles)->first() ==! null;
+        return $this->roles()->whereIn("libelle",$roles)->first() ==! null;
     }
 }

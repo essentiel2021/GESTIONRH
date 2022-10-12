@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuccursaleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('reset/{token}',[ResetController::class,'index'])->name('reset');
 Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+Route::get('users',[UserController::class,'index'])->name('user')->middleware("auth.admin");
