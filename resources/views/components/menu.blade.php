@@ -1,7 +1,7 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route("home") }}" class="nav-link {{ setMenuClass('home', 'active') }}">
               <i class="nav-icon fas fa-home"></i>
               <p>Accueil</p>
             </a>
@@ -41,7 +41,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route("manager.users.index") }}" class="nav-link">
+                <a href="{{ route("manager.users.index") }}" class="nav-link {{ setMenuActive("manager.users.index") }}">
                   <i class=" nav-icon fas fa-users-cog"></i>
                   <p>Utilisateurs</p>
                 </a>
