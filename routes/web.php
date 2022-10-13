@@ -38,4 +38,15 @@ Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 
-Route::get('users',[UserController::class,'index'])->name('user')->middleware("auth.admin");
+// Le groupe des routes relatives aux managers uniquement
+Route::group([
+    "middleware" =>["auth","auth.manager"],
+    'as' => 'manager.'
+],function(){
+    Route::group(
+        ["prefix" => "manager"],function(){
+            Route::get("/users",[UserController::class,"index"])->name("users.index");
+        }
+    );
+}
+);

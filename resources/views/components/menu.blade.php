@@ -6,8 +6,8 @@
               <p>Accueil</p>
             </a>
         </li>
-        @can('admin')
-        <li class="nav-item">
+        @can("manager")
+        <li class="nav-item  ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -17,7 +17,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-line"></i>
                   <p>Vue globale</p>
                 </a>
@@ -30,11 +30,9 @@
               </li>
             </ul>
         </li>
-        @endcan
-        @can("manager")
         
-        <li class="nav-item">
-            <a href="#" class="nav-link">
+        <li class="nav-item {{ setMenuClass('manager.','menu-open')}}">
+            <a href="#" class="nav-link {{ setMenuClass('manager.','active')}}">
               <i class=" nav-icon fas fa-user-shield"></i>
               <p>
                 Gestion Comptes
@@ -43,10 +41,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a
-                href=""
-                class="nav-link"
-                >
+                <a href="{{ route("manager.users.index") }}" class="nav-link">
                   <i class=" nav-icon fas fa-users-cog"></i>
                   <p>Utilisateurs</p>
                 </a>
@@ -60,58 +55,9 @@
             </ul>
           </li>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class=" nav-icon fas fa-user-shield"></i>
-              <p>
-                Gestion Affectations
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a
-                href=""
-                class="nav-link"
-                >
-                  <i class=" nav-icon fas fa-users-cog"></i>
-                  <p>Utilisateurs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-fingerprint"></i>
-                  <p>Roles et permissions</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class=" nav-icon fas fa-user-shield"></i>
-              <p>
-                Gestion Succursale
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="" class="nav-link">
-                  <i class=" nav-icon fas fa-users-cog"></i>
-                  <p>Départements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-fingerprint"></i>
-                  <p>Services</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </li>
-        @endcan        
-       
+        @endcan 
+               
+        @can('assistant')
         <li class="nav-item">
             <a href="#" class="nav-link">
               <i class=" nav-icon fas fa-user-shield"></i>
@@ -139,5 +85,6 @@
             </ul>
           </li>
         </li>
+        @endcan
     </ul>
 </nav>
