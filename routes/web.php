@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SuccursaleController;
-use App\Http\Controllers\UserController;
+use App\Http\Livewire\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ Route::group([
 ],function(){
     Route::group(
         ["prefix" => "manager"],function(){
-            Route::get("/users",[UserController::class,"index"])->name("users.index");
+            Route::get("/users",Users::class)->name("users.index");
         }
     );
 }

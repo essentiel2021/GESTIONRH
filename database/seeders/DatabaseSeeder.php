@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         User::find(1)->roles()->attach(1);
         User::find(2)->roles()->attach(3);
         User::find(3)->roles()->attach(2);
+
+        User::factory(10)->create();
     }
 }

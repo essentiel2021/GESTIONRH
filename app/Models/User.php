@@ -31,4 +31,8 @@ class User extends Authenticatable
     {
         return $this->roles()->whereIn("libelle",$roles)->first() ==! null;
     }
+
+    public function getAllRoleNamesAttribute(){
+        return $this->roles->implode("libelle", ' | ');
+    }
 }
