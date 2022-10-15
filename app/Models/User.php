@@ -13,6 +13,15 @@ class User extends Authenticatable
     use HasFactory;
     use  Notifiable;
 
+    protected $fillable = [
+        'name',
+        'lastName',
+        'sexe',
+        'email',
+        'password',
+    ];
+
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
