@@ -1,5 +1,5 @@
 require('./bootstrap');
-
-import "admin-lte/plugins/jquery/jquery";
-import "admin-lte/plugins/bootstrap/js/bootstrap.bundle";
-import "admin-lte/dist/js/adminlte";
+window.Swal = require("sweetalert2");
+import 'admin-lte/plugins/jquery/jquery.min.js';
+import 'admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js';
+import 'admin-lte/dist/js/adminlte.min.js';
