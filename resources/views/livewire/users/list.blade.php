@@ -43,7 +43,7 @@
                                 <td class="text-center"><span class="tag tag-success">{{ $user->created_at->diffForHumans() }}</span></td>
                                 <td class="text-center">
                                     <button class="btn btn-link"> <i class="far fa-edit"></i></button>
-                                    <button class="btn btn-link"> <i class="far fa-trash-alt"></i></button>
+                                    <button class="btn btn-link" wire:click='confirmDelete("{{ $user->prenom }} {{ $user->nom }}")'> <i class="far fa-trash-alt"></i></button>
                                 </td>
                             </tr>
 
@@ -61,3 +61,25 @@
                 <!-- /.card -->
             </div>
 </div>
+
+<script>
+    window.addEventListener("showConfirmMessage", event=>{
+        Swal.fire({
+        title: 'Êtes vous sûr de vouloir continuer?',
+        text: event.detail.message,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Continuer'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        }
+        })
+    })
+</script>

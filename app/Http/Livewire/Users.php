@@ -43,6 +43,12 @@ class Users extends Component
         User::create($validateAttribute['newUser']);
 
         $this->newUser = [];
-        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur créé avec succès!"]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Compte créé avec succès!"]);
+    }
+
+    public function confirmDelete($name){
+
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message"=>"Vous êtes sur le point de supprimer le compte $name de la liste."]);
+
     }
 }
