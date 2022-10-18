@@ -3,6 +3,10 @@
 use Illuminate\Support\Str;
 
 
+define("PAGELIST", "list");
+define("PAGECREATEFORM", "create");
+define("PAGEEDITFORM", "edit");
+
 function userFullName(){
     return auth()->user()->lastName . " " . auth()->user()->name;
 }
