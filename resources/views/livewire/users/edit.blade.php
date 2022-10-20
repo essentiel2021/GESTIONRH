@@ -71,7 +71,45 @@
           <div class="card-header">
             <h3 class="card-title"> <i class="fas fa-fingerprint fa-2x"></i> Rôles & Permissions</h3>
           </div>
-          <div class="card-body"></div>
+          <div class="card-body">
+            <div id="accordion">
+              @foreach($rolePermissions["roles"] as $role)
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between">
+                    <h4 class="card-title flex-grow-1">
+                      <a  data-parent="#accordion" href="#"  aria-expanded="true">{{$role["role_libelle"]}}</a>
+                    </h4>
+                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                      <input type="checkbox" class="custom-control-input" id="customSwitch{{$role["role_id"]}}" @if($role["active"])checked @endif>
+                      <label class="custom-control-label" for="customSwitch{{$role["role_id"]}}">{{ $role["active"] ? "Activé" : "Désactivé" }}</label>
+                    </div>
+                  </div>
+                </div>
+              @endforeach
+              @json($rolePermissions["roles"])
+            </div>
+          </div>
+          <div class="p-3">
+            <table>
+              <table class="table table-bordered">
+                <thead>
+                  <th>Permissions</th>
+                  <th></th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ajouter un client</td>
+                    <td>
+                      <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch">
+                        <label class="custom-control-label" for="customSwitch">Activé</label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,12 +20,8 @@ class Users extends Component
 
     public $editUser = [];
 
-    protected $rules = [
-        'newUser.name' => 'required',
-        'newUser.lastName' => 'required',
-        'newUser.email' => 'required|email|unique:users,email',
-        'newUser.sexe' => 'required',
-    ];
+    public $rolePermissions = [];
+
     protected $validationAttributes = [
         'newUser.email' => 'Email'
     ];
@@ -64,7 +62,38 @@ class Users extends Component
     public function goToEditUser($id){
         $this->editUser = User::find($id)->toArray();
         $this->currentPage = PAGEEDITFORM;
-        //dd($this->editUser);
+        $this->populateRolePermissions();
+    }
+    public function populateRolePermissions(){
+        $this->rolePermissions["roles"] = [];
+        $this->rolePermissions["permissions"] = [];
+        //logique pour charger les rôles et permissions
+        $mapForCB = function($value){
+            return $value["id"];
+        };
+        //recupere les id du tableau de role crée
+        $roleIds = array_map($mapForCB,User::find($this->editUser["id"])->roles->toArray());
+        $permissionIds = array_map($mapForCB,User::find($this->editUser["id"])->permissions->toArray());
+
+        foreach(Role::all() as $role ){
+            if(in_array($role->id,$roleIds)){
+                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_libelle"=>$role->libelle, "active"=>true]);
+            }
+            else{
+                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_libelle"=>$role->libelle, "active"=>false]);
+            }
+        }
+
+        foreach(Permission::all() as $permission ){
+            if(in_array($permission->id,$permissionIds)){
+                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_libelle"=>$permission->libelle, "active"=>true]);
+            }
+            else{
+                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_libelle"=>$permission->libelle, "active"=>false]);
+            }
+        }
+        
+        //dd($this->rolePermissions);
     }
     public function addUser(){
         $validateAttribute = $this->validate();
