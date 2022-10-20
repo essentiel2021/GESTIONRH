@@ -80,6 +80,19 @@ class Users extends Component
         User::find($this->editUser["id"])->update($validateAttribute["editUser"]);
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mise à jour avec succès!"]);
     }
+    public function confirmPwdReset(){
+
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message"=>[
+            'text' => "Vous êtes sur le point de rénitialiser le mot de passe de ce compte .Voulez vous continuer?",
+            'title' =>"Êtes vous sûr de vouloir continuer?",
+            'type' => "warning",
+        ]]);
+        
+    }
+    public function resetPassword(){
+        User::find($this->editUser["id"])->update(["password" => bcrypt(DEFAULTPASWWORD)]);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mot de passe du compte réinitialiser avec succès!"]);
+    }
     public function confirmDelete($name,$id){
 
         $this->dispatchBrowserEvent("showConfirmMessage", ["message"=>[
@@ -98,4 +111,5 @@ class Users extends Component
         $user->delete();
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Compte supprimé avec succès!"]);
     }
+   
 }
