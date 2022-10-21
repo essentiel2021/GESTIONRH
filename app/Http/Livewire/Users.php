@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
@@ -92,8 +93,6 @@ class Users extends Component
                 array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_libelle"=>$permission->libelle, "active"=>false]);
             }
         }
-        
-        //dd($this->rolePermissions);
     }
     public function addUser(){
         $validateAttribute = $this->validate();
@@ -102,6 +101,22 @@ class Users extends Component
 
         $this->newUser = [];
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Compte créé avec succès!"]);
+    }
+    public function updateRoleAndPermissions(){
+        DB::table("user_role")->where("user_id", $this->editUser["id"])->delete();
+        DB::table("user_permission")->where("user_id", $this->editUser["id"])->delete();
+        foreach($this->rolePermissions["roles"] as $role){
+            if($role["active"]){
+                User::find($this->editUser["id"])->roles()->attach($role["role_id"]);
+            }
+        }
+
+        foreach($this->rolePermissions["permissions"] as $permission){
+            if($permission["active"]){
+                User::find($this->editUser["id"])->permissions()->attach($permission["permission_id"]);
+            }
+        }
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Roles et permissions mis à jour avec succès!"]);
     }
 
     public function updateUser(){
